@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Weather API</title>
+</head>
+
+<body>
+
+    <div class="jumbotron">
+
+        <h2>What's the weather like?</h2>
+
+    </div>
+
+    
+    
+    <div class="container col-md-4">
+
+    
+       <div class="columns" style="width: 30rem;">
+    
+           <form method="POST">
+              {% csrf_token %}
+           <div class="input-group mb-3 mt-5 ">
+               {{ pc.name }}
+                
+            <div class="input-group-append">
+               <div class="control">
+                    <button type="submit" class="button is-info">Add City </button>
+                </div>
+            </div>
+            </div>
+
+         </form>
+        
+       </div>
+        <div class="card " style="width: 30rem;" role="card">
+
+            <div class="card-body">
+             
+                {% for city_weather in weather_data %}
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <figure class="image is-50x50">
+                            <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+                        </figure>
+                    </div>
+                    <div class="column">
+                        <div class="col-sm">
+                            <h3>{{ city_weather.temprature }}° F</h3>
+                        </div>
+                        <div class="col-sm">
+                            <p>{{ city_weather.description }}</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="col-sm">
+                            <h3>{{ city_weather.city }}</h3>
+                        </div>
+                        <div class="col-sm">
+                            <h5>{{ city_weather.country }}</h5>
+                        </div>
+                        <div class="col-sm">
+                            <p>{{ city_weather.datetime }}</p>
+                        </div>
+                    </div>
+                    {% comment %} <div class="column">
+                      <button type="button" class="close" data-dismiss="card" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    
+                    </div> {% endcomment %}
+                </div>
+     
+             {% endfor %}
+             
+            </div>
+           
+        </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
